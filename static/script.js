@@ -1,7 +1,7 @@
 function performReverseGeocoding() {
     var addressInput = document.getElementById('address');
-    var longitudeInput = document.querySelector("body > div.row > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > input");
-    var latitudeInput = document.querySelector("body > div.row > div:nth-child(1) > form:nth-child(2) > div:nth-child(2) > input");
+    var longitudeInput = document.querySelector("body > div.row > div:nth-child(1) > form:nth-child(3) > div:nth-child(1) > input");
+    var latitudeInput = document.querySelector("body > div.row > div:nth-child(1) > form:nth-child(3) > div:nth-child(2) > input");
 
     
     var address = addressInput.value;
@@ -19,7 +19,6 @@ function performReverseGeocoding() {
                 var longitude = results[0].lon;
 
                 // Exibir os resultados (substitua isso pelo que desejar)
-                alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
                 latitudeInput.value = latitude;
                 longitudeInput.value = longitude;
 
