@@ -52,7 +52,7 @@ Ensure that the 'uploads' directory exists in the same directory as your script.
 
 ## Author
 
-Your Name
+- [Lucas Ribeiro](https://github.com/LucasRibeiro36)
 
 ## License
 
