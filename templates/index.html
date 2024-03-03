@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Location</title>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mb-4">Change Location of Photo</h1>
+            <form>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" name="address" id="address">
+                </div>
+                <button type="button" class="btn btn-primary" id="search">Search</button>
+            </form>
+            <form method="post" action="/" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" class="form-control" name="latitude" required>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude:</label>
+                    <input type="text" class="form-control" name="longitude" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image:</label>
+                    <input type="file" class="form-control-file" name="image" accept=".jpg, .jpeg, .png" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Change Location</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            {% if image_path %}
+                <h2 class="mt-4">Modified Image:</h2>
+                <img src="{{ image_path }}" alt="Modified Image" class="img-fluid">
+                <br>
+                <a href="{{ url_for('download', filename=os.path.basename(image_path)) }}" class="btn btn-success mt-2" download>Download Modified Image</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
