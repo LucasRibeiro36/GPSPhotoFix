@@ -21,7 +21,7 @@ This is a simple Flask web application for uploading images and updating their G
 Make sure you have the necessary Python packages installed. You can install them using the following:
 
 ```bash
-pip install Flask GPSPhoto pillow
+pip install -r requirements.txt
 ```
 
 ## Usage
