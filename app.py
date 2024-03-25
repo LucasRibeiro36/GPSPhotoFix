@@ -18,6 +18,10 @@ def change_location(image_path, coordinates):
     info = gpsphoto.GPSInfo((coordinates["latitude"], coordinates["longitude"]), timeStamp=timestamp)
     photo.modGPSData(info, image_path)
 
+def changeFileName(image_path, new_name):
+    os.rename(image_path, new_name)
+    return new_name
+
 def delete_old_images():
     while True:
         time.sleep(60 * 60)  # Sleep for 1 hour (adjust as needed)
@@ -34,11 +38,13 @@ def index():
     if request.method == 'POST':
         latitude = float(request.form['latitude'])
         longitude = float(request.form['longitude'])
+        name = request.form['name']
         coordinates = {'latitude': latitude, 'longitude': longitude}
         
         image = request.files['image']
         image_path = os.path.join('uploads', image.filename)
         image.save(image_path)
+        image_path = changeFileName(image_path, os.path.join('uploads', name + '.jpg'))
         
         if image_path.lower().endswith(".png"):
             jpeg_path = image_path.replace(".png", ".jpg")
@@ -71,6 +77,7 @@ def uploads(filename):
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 # Start the thread to delete old images
 delete_thread = threading.Thread(target=delete_old_images)
